@@ -1,0 +1,142 @@
+/* here you can put your own css to customize and override the theme */
+.page-header-top {
+	background-image: url('../../../images/lane-header-background.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #000 !important;
+	height: 90px !important;
+}
+.page-header {
+	height: 141px !important;
+}
+.page-header .page-header-top .page-logo .logo-default {
+    margin: 7.5px 0 0 !important;
+}
+.page-header .page-header-menu {
+    background: #252525;
+}
+.page-header .page-header-menu .hor-menu .navbar-nav>li.active>a {
+	color: #fff;
+    background: #252525; !important;
+}
+.page-header .page-header-menu .hor-menu .navbar-nav>li.open>a, .page-header .page-header-menu .hor-menu .navbar-nav>li:hover>a, .page-header .page-header-menu .hor-menu .navbar-nav>li>a:active, .page-header .page-header-menu .hor-menu .navbar-nav>li>a:focus, .page-header .page-header-menu .hor-menu .navbar-nav>li>a:hover {
+    color: #fff;
+    background: #b4121b !important;
+}
+.page-header .page-header-top .top-menu .navbar-nav>li.dropdown.open .dropdown-toggle, .page-header .page-header-top .top-menu .navbar-nav>li.dropdown:active .dropdown-toggle, .page-header .page-header-top .top-menu .navbar-nav>li.dropdown:focus .dropdown-toggle {
+	background: #000 !important;
+}
+.page-header .page-header-menu .hor-menu .navbar-nav>li .dropdown-menu {
+    background: #252525;
+}
+.page-header .page-header-menu .hor-menu .navbar-nav>li .dropdown-menu li>a {
+    color: #e2e2e2;
+    background: #252525;
+}
+.page-header .page-header-menu .hor-menu .navbar-nav>li .dropdown-menu li:hover>a {
+    color: #fff;
+    background: #b4121b;
+}
+.dropdown-user .dropdown-toggle {
+	background: #000 !important;
+}
+.page-prefooter { 
+	background: #252525;
+	padding-bottom: 12px;
+ }
+.page-footer {
+	background: #000;
+}
+.footer-block h2 {
+	color: #b4121b;
+}
+.page-prefooter a {
+	color: #fff !important;
+}
+.page-prefooter a:hover {
+	color: #e2e2e2 !important;
+}
+a {
+	color: #b4121b;
+}
+.copyright>a:hover {
+    color: #e2e2e2;
+}
+a:hover {
+	color: #252525;
+}
+.page-wrapper .page-wrapper-middle {
+	background: #e2e2e2;
+}
+.breadcrumb .fa {
+	color: #000 !important;
+}
+.breadcrumb>li {
+	color: #000 !important;
+}
+.page-header .page-header-top .top-menu {
+	margin: 23px 0 0;
+}
+.dt-button .buttons-pdf {
+	color: #ff0000;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+	background-color: #b4121b;
+	border-color: #b4121b;
+}
+.pagination>li>a {
+	color: #000;
+}
+.pagination>.next>li>a {
+	color: #000;
+}
+.username {
+	color: #fff;
+}
+.username>a {
+	color: #ff0000;
+}
+.username>a:hover {
+	color: #e2e2e2;
+	text-decoration: underline;
+}
+.page-header .page-header-top .top-menu .navbar-nav>li.dropdown-user>.dropdown-toggle>.username, .page-header .page-header-top .top-menu .navbar-nav>li.dropdown-user>.dropdown-toggle>i {
+	color: #fff;
+}
+.page-header .page-header-top .top-menu .navbar-nav>li.quick-sidebar-toggler>i {
+	color: #fff;
+}
+.login {
+	background-color: #000 !important;
+}
+.login .content .create-account {
+	background-color: #252525;
+}
+.login .copyright {
+	color: #b4121b;
+}
+.login .content .check {
+	color: #000;
+}
+.login .content .form-actions {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.login .content .form-control {
+	height: 38px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+.tabbable-line>.nav-tabs>li.active {
+    background: 0 0;
+    border-bottom: 4px solid #b4121b;
+}
+.tabbable-line>.nav-tabs>li:hover {
+    background: 0 0;
+    border-bottom: 4px solid #252525;
+}
+..kb-config__group-header, .kb-config__page-m-title {
+	color: #b4121b !important;
+}
