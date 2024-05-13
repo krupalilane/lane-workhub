@@ -88,3 +88,5 @@ defined('CMP_SYSTEM')          OR define('CMP_SYSTEM', 35);
 defined('HDPE_SYSTEM')         OR define('HDPE_SYSTEM', 42);
 defined('KBMAX_USER_EMAIL')            OR define('KBMAX_USER_EMAIL', 'webadmin@lane-enterprises.com');
 defined('KBMAX_USER_PASSWORD')         OR define('KBMAX_USER_PASSWORD', 'P4ssw0rd');
+defined('QUOTES_IN_PROGRESS')          OR define('QUOTES_IN_PROGRESS', 'Processing');
+defined('QUOTES_BUILD_COMPLETE')       OR define('QUOTES_BUILD_COMPLETE', 'Build Complete');

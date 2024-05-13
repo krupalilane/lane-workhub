@@ -21,7 +21,7 @@ class Project extends MY_Controller {
 		$this->data['project_id'] 	= $id;
 		$breadcrumb_data = array(
 			'0' => array(
-				'url'	=> 'home',
+				'url'	=> site_url('manage_project'),
 				'name'	=> 'Home'
 			), 
 			'1' => array(
@@ -45,30 +45,6 @@ class Project extends MY_Controller {
 			$breadcrumb = array(
 				'url'	=> '',
 				'name'	=> 'HDPE System (Beta)'
-			);
-			array_push($breadcrumb_data, $breadcrumb);
-		}
-		$this->data['breadcrumb'] = $breadcrumb_data;
-	}
-	public function ss()
-	{
-		$id = 10;
-		$this->data['javascripts'] 	= array('project.js');
-		$this->data['project_id'] 	= $id;
-		$breadcrumb_data = array(
-			'0' => array(
-				'url'	=> 'home',
-				'name'	=> 'Home'
-			), 
-			'1' => array(
-				'url'	=> '',
-				'name'	=> 'Create Project'
-			) 
-		); 
-		if ($id == STORMKEEPER) {
-			$breadcrumb = array(
-				'url'	=> '',
-				'name'	=> 'StormKeeper'
 			);
 			array_push($breadcrumb_data, $breadcrumb);
 		}

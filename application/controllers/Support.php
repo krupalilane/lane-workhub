@@ -19,7 +19,7 @@ class Support extends MY_Controller {
 	{
 		$breadcrumb_data = array(
 			'0' => array(
-				'url'	=> 'home',
+				'url'	=> site_url('manage_project'),
 				'name'	=> 'Home'
 			), 
 			'1' => array(
