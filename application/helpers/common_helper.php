@@ -1,27 +1,4 @@
 <?php
-
-if (!function_exists('UserExistcheck')) {
-    function UserExistcheck() {
-        $CI =& get_instance();
-        if($CI->session->has_userdata('user')){
-            $result = $CI->db->get_where('users',array('id'=> $CI->session->userdata('user')['id']))->row();
-            if(empty($result)){
-                $CI->session->unset_userdata('user');
-            }
-        }
-    }
-}
-if (!function_exists('adminExistcheck')) {
-    function adminExistcheck() {
-        $CI =& get_instance();
-        if($CI->session->has_userdata('admin')){
-            $result = $CI->db->get_where('users',array('id'=> $CI->session->userdata('admin')['id']))->row();
-            if(empty($result)){
-                $CI->session->unset_userdata('admin');
-            }
-        }
-    }
-}
 if (!function_exists('timezone_strtosecond')) {
 
     function timezone_strtosecond($timezone) {

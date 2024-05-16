@@ -79,7 +79,7 @@
 <script src="<?php echo asset_url();?>global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url();?>global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url();?>global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-<?php if ($active_menu == 'contact') { ?>
+<?php if (isset($active_menu) && $active_menu == 'contact') { ?>
 <script src="//maps.googleapis.com/maps/api/js?senson=true&v=3&key=AIzaSyAXtrz-TkYuwJ6CdZwKOBfGWbORHyhWrNI" type="text/javascript"></script>
 <?php } ?>
 <?php

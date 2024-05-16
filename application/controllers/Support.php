@@ -10,6 +10,10 @@ class Support extends MY_Controller {
 	protected $layout = 'layouts/master_layout';
 	public function __construct() {
 	    parent::__construct();  
+	    $this->s_user = $this->session->userdata('user');
+	    if(empty($this->s_user)){
+	        redirect(site_url('login'));
+	    }
 	    $this->load->helper('project_helper');
 	    $this->data['project_lists'] = get_project_data();
 	    $this->data['active_menu'] = 'support';
