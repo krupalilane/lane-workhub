@@ -3,6 +3,9 @@
 Login page
 ***/
 /* bg color */
+.error{
+  color: red;
+}
 .login {
   background-color: #364150; }
 

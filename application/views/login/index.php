@@ -1,18 +1,24 @@
 <!-- BEGIN LOGIN FORM -->
-<form class="login-form" action="login-proc.php" method="post">
-    <input type="hidden" name="formkey" id="formkey1" value="5f7d99d1d77285454d4e3fb788756f5a">
-    <h3 class="form-title"><i class="fa fa-lock"></i>&nbsp;Sign In</h3>
-    <div class="alert alert-danger display-hide">
-        <button class="close" data-close="alert"></button>
-        <span> Enter your email and password. </span>
-    </div>                                                                                         
+<?php if($this->session->flashdata('error')) { ?>
+    <div class="alert alert-warning alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <?php echo $this->session->flashdata('error'); ?>
+    </div>
+<?php } ?>
+<?php if($this->session->flashdata('success')) { ?>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <?php echo $this->session->flashdata('success'); ?>
+    </div>
+<?php } ?>
+<form id="login-form" action="<?php echo site_url('login/check_login');?>" method="post">
+    <h3 class="form-title"><i class="fa fa-lock"></i>&nbsp;Sign In</h3>              
     <div class="form-group">
-        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-        <label class="control-label visible-ie8 visible-ie9">Email</label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
+        <label class="control-label" for="email">Email</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" id="email" /> </div>
     <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Password</label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
+        <label class="control-label" for="password">Password</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" id="password" /> </div>
     <div class="form-actions">
         <button type="submit" class="btn red uppercase">Login</button>
         <a href="<?php echo site_url('forgot_password');?>" id="forget-password" class="forget-password">Forgot Password?</a>

@@ -42,9 +42,19 @@
         <script src="<?php echo asset_url();?>global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <script src="<?php echo asset_url();?>global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script src="<?php echo asset_url();?>global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>global/scripts/app.min.js" type="text/javascript"></script>
+        <?php
+        if (isset($js_links) && is_array($js_links)) {
+            foreach ($js_links as $js_link) {
+                echo js_link($js_link);
+            }
+        }
+        if (isset($javascripts) && is_array($javascripts)) {
+            foreach ($javascripts as $javascript) {
+                echo js($javascript);
+            }
+        }
+        ?>
     </body>
 </html>
