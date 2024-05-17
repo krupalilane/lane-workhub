@@ -14,7 +14,7 @@ class Manage_project extends MY_Controller {
 	    if(empty($this->s_user)){
 	        redirect(site_url('login'));
 	    }
-	    $this->data['active_menu'] 	= 'manage_project';
+	    $this->data['active_menu'] 	= 'edit_profile';
 	    $this->load->helper('project_helper');
 	    $this->data['project_lists'] = get_project_data();
 	    $this->data['javascripts'] 	= array('manage_project.js');

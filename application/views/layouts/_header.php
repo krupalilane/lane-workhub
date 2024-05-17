@@ -58,7 +58,7 @@
                                         ?>                                           
                                     </ul>
                                 </li>
-                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown ">
+                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'edit_profile') ? 'active' : ''; ?>">
                                     <a href="<?php echo site_url('edit_profile'); ?>"> Edit Profile
                                         <span class="arrow"></span>
                                     </a>
@@ -75,12 +75,12 @@
                                     </a>
                                     <ul class="dropdown-menu pull-left">
                                         <li aria-haspopup="true">
-                                            <a href="<?php echo site_url('work_in_progress'); ?>" class="nav-link">
+                                            <a href="<?php echo site_url('user_administration'); ?>" class="nav-link">
                                                 User Administration
                                             </a>
                                         </li>
                                         <li aria-haspopup="true" class=" ">
-                                            <a href="<?php echo site_url('work_in_progress'); ?>" class="nav-link  ">
+                                            <a href="<?php echo site_url('quote_administration'); ?>" class="nav-link  ">
                                                 Quote Administration
                                             </a>
                                         </li>
