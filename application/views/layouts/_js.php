@@ -41,32 +41,6 @@
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     }
-    jQuery(document).ready(function() {          
-        $('#logout_confirm').click(function(){
-            bootbox.confirm({
-                title: "<i class='fa fa-question-circle'></i>&nbsp;Log Out?",
-                message: "Are you sure that you want to log out of the Storm-Storage Portal?",
-                buttons: {
-                    cancel: {
-                        label: '<i class="fa fa-times"></i> Cancel',
-                        className: 'btn dark'
-                    },
-                    confirm: {
-                        label: '<i class="fa fa-check"></i> Confirm',
-                        className: 'btn red'
-                    }
-                },
-                callback: function (result) {
-                    if(result === true) {
-                        window.location.href = "logout.php";
-                    }
-                    else {
-                       $('.bootbox.modal').modal('hide');
-                    }
-                }
-            });
-        }); 
-    });
 </script>   
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -94,3 +68,32 @@ if (isset($javascripts) && is_array($javascripts)) {
     }
 }
 ?>
+<script type="text/javascript">
+    var logout_url = "<?php echo site_url('login/logout'); ?>";
+    jQuery(document).ready(function() {          
+        $('#logout_confirm').click(function(){
+            bootbox.confirm({
+                title: "<i class='fa fa-question-circle'></i>&nbsp;Log Out?",
+                message: "Are you sure that you want to log out of the Storm-Storage Portal?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel',
+                        className: 'btn dark'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm',
+                        className: 'btn red'
+                    }
+                },
+                callback: function (result) {
+                    if(result === true) {
+                        window.location.href = logout_url;
+                    }
+                    else {
+                        $('.bootbox.modal').modal('hide');
+                    }
+                }
+            });
+        }); 
+    });
+</script>   

@@ -69,8 +69,8 @@
                                 <div class="tab-content">
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
-                                        <form role="form" method="post" enctype="multipart/form-data" action="profile-update.php" id="profile_form">
-                                        <input type="hidden" name="auth_id" value="12">                               
+                                        <form role="form" method="post" enctype="multipart/form-data" action="" id="profile_form">
+                                            <input type="hidden" name="user_id" name="user_id" value="12">          
                                             <div class="form-group">
                                                 <label class="control-label">First Name</label>
                                                 <input type="text" name="first_name" value="Kevin" class="form-control input-xlarge" /> </div>

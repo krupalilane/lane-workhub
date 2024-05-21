@@ -180,7 +180,7 @@ class Project extends MY_Controller {
 					$quoteJSON 						= json_encode($quote_submit_data);
 					$status 						= 1;
 					$db_product_details 			= $quote_submit_data->products;
-					$userId 						= 0;
+					$userId 						= $this->session->userdata('user')['id'];
 					$kbmaxProductID 				= '';
 					$volumeNeeded 					= '';
 					$soilBearing 					= '';

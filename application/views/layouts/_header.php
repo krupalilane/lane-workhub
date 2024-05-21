@@ -18,7 +18,7 @@
                         <!-- BEGIN TOP NAVIGATION MENU -->
                         <div class="top-menu">
                             <ul class="nav navbar-nav pull-right">
-                                <span class="username username-hide-mobile">Logged In:&nbsp;&nbsp;<a href="profile.php">Kevin Miller</a></span>
+                                <span class="username username-hide-mobile">Logged In:&nbsp;&nbsp;<a href="<?php echo site_url('edit_profile'); ?>"><?php echo $this->session->userdata('user')['firstname']; ?> <?php echo $this->session->userdata('user')['lastname']; ?></a></span>
                             </ul>
                         </div>
                         <!-- END TOP NAVIGATION MENU -->
@@ -92,7 +92,7 @@
                                     </a>
                                 </li>                                                                          
                                 <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown ">
-                                    <a href="<?php echo site_url('work_in_progress'); ?>"> Log Out
+                                    <a id="logout_confirm"> Log Out
                                         <span class="arrow"></span>
                                     </a>
                                 </li> 

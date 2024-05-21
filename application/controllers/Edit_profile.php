@@ -10,11 +10,11 @@ class Edit_profile extends MY_Controller {
 	protected $layout = 'layouts/master_layout';
 	public function __construct() {
 	    parent::__construct(); 
-	    // $this->s_user = $this->session->userdata('user');
-	    // if(empty($this->s_user)){
-	    //     redirect(site_url('login'));
-	    // } 
-	    $this->data['active_menu'] = 'project';
+	    $this->s_user = $this->session->userdata('user');
+	    if(empty($this->s_user)){
+	        redirect(site_url('login'));
+	    } 
+	    $this->data['active_menu'] = 'edit_profile';
 		$this->load->helper('project_helper');
 		$this->load->database();
 		$this->data['project_lists'] = get_project_data();
@@ -37,7 +37,7 @@ class Edit_profile extends MY_Controller {
 		$this->data['passwords'] = $passwords;
 
 		//start code for get office details
-		$stmt = sqlsrv_query($this->db->conn_id, 'EXEC stormconfig.USP_GetUserDetailbyId @UserId = 0');
+		$stmt = sqlsrv_query($this->db->conn_id, 'EXEC stormconfig.USP_GetUserDetailbyId @UserId = '.$this->session->userdata('user')['id']);
 		if (!$stmt) {
 		    return false;
 		}
@@ -50,6 +50,7 @@ class Edit_profile extends MY_Controller {
 		    }
 		    $user_resultSets[] = $resultSet;
 		} while (sqlsrv_next_result($stmt));
+		
 		$office_details = array();
 		if(isset($user_resultSets[1])){
 		    $office_details = $user_resultSets[1];
