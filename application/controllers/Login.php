@@ -35,7 +35,7 @@ class Login extends MY_Controller{
             if(!empty($result['UserId'])){
                 $this->config->load('config');
                 $this->config->set_item('sess_expiration', $this->data['setting']['value']); 
-                $this->session->set_userdata('user', ['id' => $result['UserId'],'firstname' => $result['FirstName'],'lastname' => $result['LastName'],]);
+                $this->session->set_userdata('user', ['id' => $result['UserId'],'firstname' => $result['FirstName'],'lastname' => $result['LastName']]);
                 redirect(site_url('manage_project'));
             }else{
                 $this->session->set_flashdata('error','Email/Password is incorrect');

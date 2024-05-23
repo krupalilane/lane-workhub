@@ -12,7 +12,7 @@
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
-                        <div class="profile-usertitle-name font-dark"> Kevin Miller</div>
+                        <div class="profile-usertitle-name font-dark"> <?php echo $user_details['FirstName'].' '.$user_details['LastName']; ?> </div>
                         <div class="profile-usertitle-job font-dark"> Admin </div><br>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -69,22 +69,34 @@
                                 <div class="tab-content">
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
-                                        <form role="form" method="post" enctype="multipart/form-data" action="" id="profile_form">
-                                            <input type="hidden" name="user_id" name="user_id" value="12">          
+                                        <?php if($this->session->flashdata('error')) { ?>
+                                            <div class="alert alert-warning alert-dismissible">
+                                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                              <?php echo $this->session->flashdata('error'); ?>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if($this->session->flashdata('success')) { ?>
+                                            <div class="alert alert-success alert-dismissible">
+                                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                              <?php echo $this->session->flashdata('success'); ?>
+                                            </div>
+                                        <?php } ?>
+                                        <form role="form" method="post" enctype="multipart/form-data" action="<?php echo site_url('edit_profile/update_user_profile');?>"  id="profile_form">
+                                            <input type="hidden" name="user_id" name="user_id" value="<?php echo $user_details['ID']; ?>">                  
                                             <div class="form-group">
                                                 <label class="control-label">First Name</label>
-                                                <input type="text" name="first_name" value="Kevin" class="form-control input-xlarge" /> </div>
+                                                <input type="text" name="firstname" value="<?php echo $user_details['FirstName']; ?>" class="form-control input-xlarge" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">Last Name</label>
-                                                <input type="text" value="Miller" name="last_name" class="form-control input-xlarge" /> </div>
+                                                <input type="text" value="<?php echo $user_details['LastName']; ?>" name="lastname" class="form-control input-xlarge" /> </div>
                                             <div class="form-group">
                                                 <label class="control-label">Local Office</label>
-                                                <select name="local_office" class="form-control input-xlarge">
+                                                <select name="localoffice" class="form-control input-xlarge">
                                                     <option value="" >Choose Local Lane Office</option>
                                                     <?php
                                                         if (!empty($office_details)) {
                                                             foreach ($office_details as $key => $office_data) { ?>
-                                                                <option value="<?php echo $office_data['ID']; ?>"><?php echo $office_data['OfficeName']; ?></option>   
+                                                                <option <?php if ($user_details['OfficeId'] == $office_data['ID'] ) { echo "selected";} ?> value="<?php echo $office_data['ID']; ?>"><?php echo $office_data['OfficeName']; ?></option>   
                                                         <?php    }
                                                         }
                                                     ?>
@@ -92,23 +104,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Company Name</label>
-                                                <input type="text" placeholder="" class="form-control input-xlarge" name="company_name" value="Lane Enterprises" /> 
+                                                <input type="text" placeholder="" class="form-control input-xlarge" name="company_name" value="<?php echo $user_details['CompanyName']; ?>" /> 
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Phone</label>
-                                                <input type="text" placeholder="" class="form-control input-xlarge" name="phone" value="" /> 
+                                                <input type="text" placeholder="" class="form-control input-xlarge" name="phone" value="<?php echo $user_details['Phone']; ?>" /> 
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Address 1</label>
-                                                <input type="text" placeholder="" class="form-control input-xlarge" name="address1" value="" /> 
+                                                <input type="text" placeholder="" class="form-control input-xlarge" name="address1" value="<?php echo $user_details['Address1']; ?>" /> 
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Address 2</label>
-                                                <input type="text" class="form-control input-xlarge" placeholder="" name="address2" value="" />
+                                                <input type="text" class="form-control input-xlarge" placeholder="" name="address2" value="<?php echo $user_details['Address2']; ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">City</label>
-                                                <input type="text" class="form-control input-large" placeholder="" name="city" value="" />
+                                                <input type="text" class="form-control input-large" placeholder="" name="city" value="<?php echo $user_details['City']; ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">State</label>                                                                                    
@@ -117,7 +129,7 @@
                                                     <?php
                                                         if (!empty($state)) {
                                                             foreach ($state as $key => $state_data) { ?>
-                                                                <option value="<?php echo $state_data['ID']; ?>"><?php echo $state_data['State']; ?></option>   
+                                                                <option <?php if ($user_details['StateId'] == $state_data['ID'] ) { echo "selected";} ?> value="<?php echo $state_data['ID']; ?>"><?php echo $state_data['State']; ?></option>   
                                                         <?php    }
                                                         }
                                                     ?>
@@ -125,7 +137,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Zip/Postal Code</label>                                                                                    
-                                                <input type="text" class="form-control input-large" name="zip" value="">
+                                                <input type="text" class="form-control input-large" name="zip" value="<?php echo $user_details['ZipCode']; ?>">
                                             </div>
                                             <div class="margin-top-10">
                                                 <input type="submit" class="btn red" value="Update Profile">
@@ -138,12 +150,11 @@
                                         <div class="note note-danger">
                                             <p> Because your email address is your username, changing the email requires us to log you out and will require you to validate the new address before you can log in again.</p>
                                         </div>
-                                        <form role="form" method="post" enctype="multipart/form-data" action="profile-update-email.php" id="email_form">
-                                        <input type="hidden" name="e_formkey" value="2012edad105ccb1f5de1f6a17cccf53b">
-                                        <input type="hidden" name="auth_id" value="12">                                                                          
+                                        <form role="form" method="post" enctype="multipart/form-data" action="<?php echo site_url('edit_profile/update_user_email');?>" id="email_form">
+                                            <input type="hidden" name="user_id" name="user_id" value="<?php echo $user_details['ID']; ?>">
                                             <div class="form-group">
                                                 <label class="control-label">Current Email Address</label>
-                                                <input type="text" name="currentemail" class="form-control input-xlarge " value="kmiller@lane-enterprises.com" disabled/> </div>
+                                                <input type="text" name="currentemail" class="form-control input-xlarge " value="<?php echo $user_details['Email']; ?>" disabled/> </div>
                                             <div class="form-group">
                                                 <label class="control-label">New Email Address</label>
                                                 <input type="text" name="emailnew" id="emailnew" class="form-control input-xlarge " /> </div>
@@ -154,7 +165,7 @@
                                                 <label class="control-label">Acknowledgement</label>
                                                 <div class="mt-checkbox-list">
                                                     <label class="mt-checkbox"> I understand I must verify this new email address before I can log in again.
-                                                    <input type="checkbox" value="1" name="understand" />
+                                                    <input type="checkbox" name="email_understand" />
                                                     <span></span>
                                                     </label>
                                                     <div id="understand_error"></div> 
@@ -177,9 +188,8 @@
                                             } 
                                             ?>
                                         </div>
-                                        <form role="form" method="post" autocomplete="off" enctype="multipart/form-data" action="profile-update-password.php" id="password_form">
-                                        <input type="hidden" name="pw_formkey" value="2012edad105ccb1f5de1f6a17cccf53b">
-                                        <input type="hidden" name="auth_id" value="12">
+                                        <form role="form" method="post" autocomplete="off" enctype="multipart/form-data" action="<?php echo site_url('edit_profile/update_user_password');?>" id="password_form">
+                                            <input type="hidden" name="user_id" name="user_id" value="<?php echo $user_details['ID']; ?>">
                                             <div class="form-group">
                                                 <label class="control-label">Current Password</label>
                                                 <input type="password" autocomplete="off" name="currentpassword" class="form-control input-xlarge" /> </div>
@@ -200,20 +210,19 @@
                                         <div class="note note-danger">
                                             <p> Note: Unsubscribing from Notification Emails will not prevent you from receiving Forgot Password or Validation messages.</p>
                                         </div>                                                                        
-                                        <form role="form" method="post" enctype="multipart/form-data" action="profile-update-privacy.php" id="privacy_form">
-                                        <input type="hidden" name="pv_formkey" value="2012edad105ccb1f5de1f6a17cccf53b">
-                                        <input type="hidden" name="auth_id" value="12">                                                                          
+                                        <form role="form" method="post" enctype="multipart/form-data" action="<?php echo site_url('edit_profile/update_user_privacy');?>" id="privacy_form">
+                                            <input type="hidden" name="user_id" name="user_id" value="<?php echo $user_details['ID']; ?>">
                                             <table class="table table-light table-hover">
                                                 <tr>
                                                     <td> I agree to receive promotional emails from Lane / Storm-Storage.com </td>
                                                     <td>
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="subscribe_promo" value="1" /> Yes
+                                                                <input type="radio" name="subscribe_promo" value="1" <?php if ($user_details['IsAgreeToRecPromEmailFromLaneStormStorage'] == 1) { echo "checked";} ?> /> Yes
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="subscribe_promo" value="0" checked/> No
+                                                                <input type="radio" name="subscribe_promo" value="0" <?php if ($user_details['IsAgreeToRecPromEmailFromLaneStormStorage'] == 0) { echo "checked";} ?> /> No
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -224,11 +233,11 @@
                                                     <td>
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="subscribe_notify" value="1" /> Yes
+                                                                <input type="radio" name="subscribe_notify" value="1" <?php if ($user_details['IsAgreeToRecNotifEmailFromLaneStormStorage'] == 1) { echo "checked";} ?> /> Yes
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="subscribe_notify" value="0" checked/> No
+                                                                <input type="radio" name="subscribe_notify" value="0" <?php if ($user_details['IsAgreeToRecNotifEmailFromLaneStormStorage'] == 0) { echo "checked";} ?>/> No
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -239,11 +248,11 @@
                                                     <td>
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="subscribe_news" value="1" /> Yes
+                                                                <input type="radio" name="subscribe_news" value="1"  <?php if ($user_details['IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'] == 1) { echo "checked";} ?> /> Yes
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="subscribe_news" value="0" checked/> No
+                                                                <input type="radio" name="subscribe_news" value="0" <?php if ($user_details['IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'] == 0) { echo "checked";} ?>/> No
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -268,3 +277,7 @@
     </div>
 </div>
 <!-- END PAGE CONTENT INNER -->
+<script>
+    var check_email_url             = "<?php echo site_url('edit_profile/check_email');?>";
+    var check_current_pasword_url   = "<?php echo site_url('edit_profile/check_current_pasword');?>";
+</script>

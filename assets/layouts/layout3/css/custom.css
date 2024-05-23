@@ -137,6 +137,9 @@ input:-webkit-autofill {
     background: 0 0;
     border-bottom: 4px solid #252525;
 }
-..kb-config__group-header, .kb-config__page-m-title {
+.kb-config__group-header, .kb-config__page-m-title {
 	color: #b4121b !important;
+}
+.error{
+	color: red;
 }
