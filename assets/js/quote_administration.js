@@ -66,3 +66,41 @@ var TableDatatablesResponsive = function () {
 jQuery(document).ready(function() {
     TableDatatablesResponsive.init();
 });
+jQuery(document).ready(function() {          
+    $('a.delete_quote_button').click(function(){
+        var quotename =  $(this).data('quotename');
+        var quoteid = $(this).data('quoteid');
+        bootbox.confirm({
+            title: "<i class='fa fa-cube'></i></span>&nbsp;Delete Quote?",
+            message: "Are you sure that you want to delete the quote <strong>"+quotename+"</strong>?<br><br>This will permanently delete this quote and cannot be undone.",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn dark'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn red'
+                }
+            },
+            callback: function (result) {
+                if(result === true) {
+                    $.ajax({
+                        url: delete_quote_url,
+                        type: 'POST',
+                        data: { quote_id: quoteid },
+                        success: function (result) {
+                            toastr.success('Quote deleted successfully.');
+                            setTimeout(() => {
+                                window.location.href = quote_admin_url;
+                            }, 2000)
+                        }
+                    });
+                }
+                else {
+                    $('.bootbox.modal').modal('hide');
+                }
+            }
+        });
+    }); 
+});

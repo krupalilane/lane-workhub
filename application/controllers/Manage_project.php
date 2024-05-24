@@ -33,7 +33,7 @@ class Manage_project extends MY_Controller {
 			) 
 		);
 		$this->data['breadcrumb'] = $breadcrumb_data;
-		$quotes_submit_query  = $this->db->query('EXEC stormconfig.USP_GetQuoteProductList');
+		$quotes_submit_query  = $this->db->query('EXEC stormconfig.USP_GetQuoteProductList @UserId = '.$this->session->userdata('user')['id']);
 		$this->data['quotes'] = $quotes_submit_query->result_array();
 	}
 	public function view($id)

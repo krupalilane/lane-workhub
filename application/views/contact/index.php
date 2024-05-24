@@ -46,7 +46,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="gmapbg" class="c-content-contact-1-gmap" style="height: 615px;"></div>
+                <!-- <div id="gmapbg" class="c-content-contact-1-gmap" style="height: 615px;"></div> -->
+                <img src="<?php echo asset_url();?>images/map.png" class="c-content-contact-1-gmap">
             </div>
         </div>
     </div>
@@ -116,16 +117,28 @@
 		                        <div class="c-line-left bg-dark"></div>
 		                        <p class="c-font-lowercase">Please submit questions and feedback via this form.  We will respond within 1 business day to your request.  For faster service, please contact your local office.</p>
 		                    </div>
-		                    <form action="contact_submit.php" method="post" enctype="multipart/form-data" id="contact_form">
-		                    	<input type="hidden" name="auth_id" value="12">
+		                    <?php if($this->session->flashdata('error')) { ?>
+		                        <div class="alert alert-warning alert-dismissible">
+		                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		                          <?php echo $this->session->flashdata('error'); ?>
+		                        </div>
+		                    <?php } ?>
+		                    <?php if($this->session->flashdata('success')) { ?>
+		                        <div class="alert alert-success alert-dismissible">
+		                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		                          <?php echo $this->session->flashdata('success'); ?>
+		                        </div>
+		                    <?php } ?>
+		                    <form action="<?php echo site_url('contact/send_contact_details'); ?>" method="post" enctype="multipart/form-data" id="contact_form">
+		                    	<input type="hidden" name="user_id" value="<?php echo $user_details['ID'];?>">
 		                        <div class="form-group">
-		                            <input type="text" name="name" placeholder="Your Name" class="form-control input-md" value="Kevin Miller"> </div>
+		                            <input type="text" name="name" placeholder="Your Name" class="form-control input-md" value="<?php echo $user_details['FirstName'].' '.$user_details['LastName'];?>"> </div>
 		                        <div class="form-group">
-		                            <input type="text" name="email" placeholder="Your Email" class="form-control input-md" value="kmiller@lane-enterprises.com"> </div>
+		                            <input type="text" name="email" placeholder="Your Email" class="form-control input-md" value="<?php echo $user_details['Email'];?>"> </div>
 		                        <div class="form-group">
-		                            <input type="text" name="company_name" placeholder="Company Name" class="form-control input-md" value="Lane Enterprises"> </div>                                                                
+		                            <input type="text" name="company_name" placeholder="Company Name" class="form-control input-md" value="<?php echo $user_details['CompanyName'];?>"> </div>                                                                
 		                        <div class="form-group">
-		                            <input type="text" name="phone" placeholder="Contact Phone" class="form-control input-md" value=""> </div>
+		                            <input type="text" name="phone" placeholder="Contact Phone" class="form-control input-md" value="<?php echo $user_details['Phone'];?>"> </div>
 		                        <div class="form-group">
 		                            <textarea rows="8" name="message" placeholder="Write comment here ..." class="form-control input-md"></textarea>
 		                        </div>

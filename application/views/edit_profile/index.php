@@ -23,15 +23,15 @@
                     <!-- STAT -->
                     <div class="row list-separated profile-stat">
                         <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="uppercase profile-stat-title font-dark"> 87 </div>
+                            <div class="uppercase profile-stat-title font-dark"> <?php echo $user_details['TotalProjects']; ?> </div>
                             <div class="uppercase profile-stat-text font-dark"> Projects </div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="uppercase profile-stat-title font-dark"> 1 </div>
+                            <div class="uppercase profile-stat-title font-dark"> <?php echo $user_details['TotalProducts']; ?> </div>
                             <div class="uppercase profile-stat-text font-dark"> Product </div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="uppercase profile-stat-title font-dark"> 529 </div>
+                            <div class="uppercase profile-stat-title font-dark"> <?php echo $user_details['TotalDownloads']; ?> </div>
                             <div class="uppercase profile-stat-text font-dark"> Downloads </div>
                         </div>
                     </div>

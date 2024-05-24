@@ -28,3 +28,38 @@ var Contact = function () {
 jQuery(document).ready(function() {    
    Contact.init(); 
 });
+$('#contact_form').validate({
+    rules: {
+        name: {
+            required: true
+        },
+        email: {
+            required: true,
+            email: true,
+        },
+        company_name: {
+            required: true
+        },
+        message: {
+            required: true
+        }
+    },
+    messages: {
+        name: {
+            required: "Name is required!"
+        },
+        email: {
+            required: "Email is required!",
+            email: "Enter valid email!"
+        },
+        company_name: {
+            required: "Company name is required!"
+        },
+        message: {
+            required: "Message is required!"
+        }
+    },
+    submitHandler: function(form) {
+        form.submit();
+    }
+});
