@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    $('#login-form').submit(function(e) {
+        $('input[type=text]').each(function() {
+          $(this).val($.trim($(this).val()));
+        });
+    });
     $('#login-form').validate({
         rules: {
             email: {

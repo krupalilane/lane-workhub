@@ -28,6 +28,11 @@ var Contact = function () {
 jQuery(document).ready(function() {    
    Contact.init(); 
 });
+$('#contact_form').submit(function(e) {
+    $('input[type=text]').each(function() {
+      $(this).val($.trim($(this).val()));
+    });
+});
 $('#contact_form').validate({
     rules: {
         name: {

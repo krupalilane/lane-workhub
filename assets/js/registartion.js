@@ -21,6 +21,11 @@ $(document).ready(function() {
             });
             return response;
         }, "Email already exists.");
+    $('#register-form').submit(function(e) {
+        $('input[type=text]').each(function() {
+          $(this).val($.trim($(this).val()));
+        });
+    });
     $('#register-form').validate({
         rules: {
             firstname: {

@@ -20,8 +20,25 @@ class Contact extends MY_Controller {
 	    $this->data['style_links'] 	= array('pages/css/contact.min.css','global/plugins/bootstrap-fileinput/bootstrap-fileinput.css');
 	    $this->data['js_links'] 	= array('global/plugins/bootstrap-fileinput/bootstrap-fileinput.js','global/plugins/jquery.sparkline.min.js','global/plugins/gmaps/gmaps.min.js');
 	    $this->data['javascripts'] 	= array('contact.js');
+	    $this->load->library('email');
 	}
+	private function _load_email_config() {
+	   $config['protocol'] 		= SMTP_PROTOCOL;
+        $config['smtp_host'] 	= SMTP_HOST;
+        $config['smtp_port'] 	= SMTP_PORT; // or the appropriate port
+        $config['smtp_user'] 	= SMTP_FROM_EMAIL;
+        $config['smtp_pass'] 	= SMTP_PASSWORD;
+        $config['smtp_crypto'] 	= 'tls'; // or 'ssl' if required
+        $config['mailtype'] 	= 'html';
+        $config['charset'] 		= 'utf-8';
+        $config['wordwrap'] 	= true;
+        $config['smtp_timeout'] = 30;
+        $config['newline'] 		= "\r\n";
+        $config['crlf'] 		= "\r\n";
 
+        $this->email->initialize($config);
+
+	}
 	public function index()
 	{
 		$breadcrumb_data = array(
@@ -81,6 +98,22 @@ class Contact extends MY_Controller {
 		        @Status         = ?;";
 		        $user_add = $this->db->query($add_contact_us_db,$param);
 		        $result   = $user_add->result_array();
+
+		        //start code for send email for contact us page
+		        $from_email = SMTP_FROM_EMAIL;
+		        $to_email 	= SMTP_FROM_EMAIL;
+		        $this->_load_email_config();
+		        $email_message = $this->load->view('email/contact_email_template', $param, TRUE);
+		        $this->email->from($from_email, 'Identification');
+		        $this->email->to($to_email);
+		        $this->email->subject('Contact Request Received');
+		        $this->email->message($email_message);
+		        if ($this->email->send()) {
+		            echo 'Email successfully sent';
+		        } else {
+		            echo $this->email->print_debugger();
+		        }
+		        //end code for send email for contact us page
 		        
 		        $this->session->set_flashdata('success',"Details send successfully.");
 		        redirect(site_url('contact'));

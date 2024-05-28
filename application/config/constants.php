@@ -90,3 +90,8 @@ defined('KBMAX_USER_EMAIL')            OR define('KBMAX_USER_EMAIL', 'webadmin@l
 defined('KBMAX_USER_PASSWORD')         OR define('KBMAX_USER_PASSWORD', 'P4ssw0rd');
 defined('QUOTES_IN_PROGRESS')          OR define('QUOTES_IN_PROGRESS', 'Processing');
 defined('QUOTES_BUILD_COMPLETE')       OR define('QUOTES_BUILD_COMPLETE', 'Build Complete');
+defined('SMTP_FROM_EMAIL')     OR define('SMTP_FROM_EMAIL', 'storm-storage@lane-enterprises.com');
+defined('SMTP_PROTOCOL')       OR define('SMTP_PROTOCOL', 'smtp');
+defined('SMTP_HOST')           OR define('SMTP_HOST', 'smtp.office365.com');
+defined('SMTP_PORT')           OR define('SMTP_PORT', 587);
+defined('SMTP_PASSWORD')       OR define('SMTP_PASSWORD', 'CHW!nter2024!');

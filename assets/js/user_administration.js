@@ -1,8 +1,6 @@
-        var TableDatatablesResponsive = function () {
-
+var TableDatatablesResponsive = function () {
     var initProjectsTable = function () {
         var table = $('#users');
-
         var oTable = table.dataTable({
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
@@ -73,4 +71,41 @@
 jQuery(document).ready(function() {
     TableDatatablesResponsive.init();
 });
-        
+jQuery(document).ready(function() {          
+    $('a.delete_user_button').click(function(){
+        var username =  $(this).data('username');
+        var userid = $(this).data('userid');
+        bootbox.confirm({
+            title: "<i class='fa fa-user-times'></i>&nbsp;Delete User?",
+            message: "Are you sure that you want to delete the user <strong>"+username+"</strong>?<br><br>This will permanently delete this user and cannot be undone.",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn dark'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn red'
+                }
+            },
+            callback: function (result) {
+                if(result === true) {
+                    $.ajax({
+                        url: delete_user_url,
+                        type: 'POST',
+                        data: { user_id: userid },
+                        success: function (result) {
+                            toastr.success('User deleted successfully.');
+                            setTimeout(() => {
+                                window.location.href = user_admin_url;
+                            }, 2000)
+                        }
+                    });
+                }
+                else {
+                    $('.bootbox.modal').modal('hide');
+                }
+             }
+        });
+    }); 
+});

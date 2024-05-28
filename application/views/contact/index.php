@@ -47,7 +47,9 @@
                     </div>
                 </div>
                 <!-- <div id="gmapbg" class="c-content-contact-1-gmap" style="height: 615px;"></div> -->
-                <img src="<?php echo asset_url();?>images/map.png" class="c-content-contact-1-gmap">
+                <a href="https://maps.app.goo.gl/EQfybWS7aqeZddrJ8">
+                	<img src="<?php echo asset_url();?>images/map.png" class="c-content-contact-1-gmap">
+                </a>
             </div>
         </div>
     </div>

@@ -36,6 +36,11 @@ $(document).ready(function() {
         });
         return response;
     }, "Please enter correctCurrent password.");
+    $('#profile_form').submit(function(e) {
+        $('input[type=text]').each(function() {
+          $(this).val($.trim($(this).val()));
+        });
+    });
     $('#profile_form').validate({
         rules: {
             firstname: {
@@ -65,6 +70,11 @@ $(document).ready(function() {
         submitHandler: function(form) {
             form.submit();
         }
+    });
+    $('#email_form').submit(function(e) {
+        $('input[type=text]').each(function() {
+          $(this).val($.trim($(this).val()));
+        });
     });
     $('#email_form').validate({
         rules: {
@@ -104,6 +114,11 @@ $(document).ready(function() {
         submitHandler: function(form) {
             form.submit();
         }
+    });
+    $('#password_form').submit(function(e) {
+        $('input[type=text]').each(function() {
+          $(this).val($.trim($(this).val()));
+        });
     });
     $('#password_form').validate({
         rules: {
