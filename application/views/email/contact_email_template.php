@@ -7,7 +7,7 @@
 </head>
 <body>
     <p>Hi Admin,</p>
-    <p>A New Contact Request has been Submitted with the following information:</p>
+    <p>A New Request has been Submitted from contact us page with the following information:</p>
     <p><b>Name:</b> <span><?php echo $Name; ?></span></p>
     <p><b>Email:</b> <span><?php echo $Email; ?></span></p>
     <p><b>Company Name:</b> <span><?php echo $CompanyName; ?></span></p>

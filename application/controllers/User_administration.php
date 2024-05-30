@@ -70,6 +70,7 @@ class User_administration extends MY_Controller {
 		    }
 		    $user_resultSets[] = $resultSet;
 		} while (sqlsrv_next_result($stmt));
+
 		$user_details = array();
 		if(isset($user_resultSets[0][0])){
 		    $user_details = $user_resultSets[0][0];
@@ -84,9 +85,86 @@ class User_administration extends MY_Controller {
 		    $state = $user_resultSets[2];
 		}
 
+		$user_class = array();
+		if(isset($user_resultSets[3])){
+		    $user_class = $user_resultSets[3];
+		}
+
+		$user_status = array();
+		if(isset($user_resultSets[4])){
+		    $user_status = $user_resultSets[4];
+		}
+
 		sqlsrv_free_stmt($stmt);
 		$this->data['state'] 			= $state;
 		$this->data['office_details'] 	= $office_details;
 		$this->data['user_details'] 	= $user_details;
+		$this->data['user_class'] 		= $user_class;
+		$this->data['user_status'] 		= $user_status;
+	}
+	public function update()
+	{
+		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('lastname', 'last Name', 'trim|required');
+		$this->form_validation->set_rules('localoffice', 'Local Office', 'trim|required');
+
+		if ($this->form_validation->run() != FALSE){      
+		    $param = array(
+		        'UserID'                                                   => $this->input->post('user_id'),
+		        'SectionId'                                                => 5,
+		        'FirstName'                                                => $this->input->post('firstname'),
+		        'MiddleName'                                               => '',
+		        'LastName'                                                 => $this->input->post('lastname'),
+		        'Email'                                                    => '',
+		        'OfficeId'                                                 => $this->input->post('localoffice'),
+		        'Class'                                                    => $this->input->post('userclass'),
+		        'Status'                                                   => $this->input->post('userstatus'),
+		        'Password'                                                 => '',
+		        'CompanyName'                                              => $this->input->post('company_name'),
+		        'Phone'                                                    => $this->input->post('phone'),
+		        'Address1'                                                 => $this->input->post('address1'),
+		        'Address2'                                                 => $this->input->post('address2'),
+		        'City'                                                     => $this->input->post('city'),
+		        'StateId'                                                  => $this->input->post('state'),
+		        'ZipCode'                                                  => $this->input->post('zip'),
+		        'AgreeUserLicense'                                         => '',
+		        'AgreeTermsOfUse'                                          => '',
+		        'IsAgreeToRecPromEmailFromLaneStormStorage'                => 0,
+		        'IsAgreeToRecNotifEmailFromLaneStormStorage'               => 0,
+		        'IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'   => 0,
+		        'LoggedInUserID'                                           => $this->session->userdata('user')['id']
+		    );
+		    $add_user_db = "EXEC stormconfig.USP_InsertUpdateUserData 
+		        @UserID                                                    = ?,  
+		        @SectionId                                                 = ?,  
+		        @FirstName                                                 = ?,  
+		        @MiddleName                                                = ?,  
+		        @LastName                                                  = ?,  
+		        @Email                                                     = ?,  
+		        @OfficeId                                                  = ?,  
+		        @Class                                                     = ?,  
+		        @Status                                                    = ?,  
+		        @Password                                                  = ?,  
+		        @CompanyName                                               = ?,  
+		        @Phone                                                     = ?,  
+		        @Address1                                                  = ?,  
+		        @Address2                                                  = ?,  
+		        @City                                                      = ?,  
+		        @StateId                                                   = ?,  
+		        @ZipCode                                                   = ?,  
+		        @AgreeUserLicense                                          = ?,  
+		        @AgreeTermsOfUse                                           = ?,  
+		        @IsAgreeToRecPromEmailFromLaneStormStorage                 = ?,  
+		        @IsAgreeToRecNotifEmailFromLaneStormStorage                = ?,  
+		        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,  
+		        @LoggedInUserID                                            = ?;";
+		        $user_add = $this->db->query($add_user_db,$param);
+		        $result   = $user_add->result_array();
+		        $this->session->set_flashdata('success',"User Information Updated.");
+		        redirect(site_url('user_administration'));
+		}else{
+		    $this->session->set_flashdata('error',validation_errors());
+		    redirect(site_url('user_administration/edit/'.$this->input->post('user_id')));
+		}
 	}
 }

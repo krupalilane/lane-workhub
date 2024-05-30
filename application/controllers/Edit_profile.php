@@ -21,7 +21,25 @@ class Edit_profile extends MY_Controller {
 		$this->data['style_links'] 	= array('pages/css/profile.min.css');
 		$this->data['js_links']    = array('global/plugins/jquery-validation/js/jquery.validate.min.js','global/plugins/jquery-validation/js/additional-methods.min.js');
 		$this->data['javascripts']  = array('edit_profile.js');
+		$this->load->library('email');
 	}
+	private function _load_email_config() {
+       $config['protocol']      = SMTP_PROTOCOL;
+        $config['smtp_host']    = SMTP_HOST;
+        $config['smtp_port']    = SMTP_PORT; // or the appropriate port
+        $config['smtp_user']    = SMTP_FROM_EMAIL;
+        $config['smtp_pass']    = SMTP_PASSWORD;
+        $config['smtp_crypto']  = 'tls'; // or 'ssl' if required
+        $config['mailtype']     = 'html';
+        $config['charset']      = 'utf-8';
+        $config['wordwrap']     = true;
+        $config['smtp_timeout'] = 30;
+        $config['newline']      = "\r\n";
+        $config['crlf']         = "\r\n";
+
+        $this->email->initialize($config);
+
+    }
 	public function index()
 	{
 		$breadcrumb_data = array(
@@ -301,6 +319,9 @@ class Edit_profile extends MY_Controller {
 		        'IsAgreeToRecPromEmailFromLaneStormStorage'                => 0,
 		        'IsAgreeToRecNotifEmailFromLaneStormStorage'               => 0,
 		        'IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'   => 0,
+		        'TokenType'                                                => CHANGE_EMAIL_TOKEN_TYPE,
+		        'Class'                                                    => '',  
+		        'Status'                                                   => '',  
 		        'LoggedInUserID'                                           => $this->session->userdata('user')['id']
 		    );
 		    $add_user_db = "EXEC stormconfig.USP_InsertUpdateUserData 
@@ -324,18 +345,47 @@ class Edit_profile extends MY_Controller {
 		        @IsAgreeToRecPromEmailFromLaneStormStorage                 = ?,  
 		        @IsAgreeToRecNotifEmailFromLaneStormStorage                = ?,  
 		        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,  
+		        @TokenType    											   = ?,  
+		        @Class                                                     = ?,  
+		        @Status                                                    = ?,  
 		        @LoggedInUserID                                            = ?;";
 		        $user_add = $this->db->query($add_user_db,$param);
 		        $result   = $user_add->result_array();
-
-		        $this->session->unset_userdata('user');
-		        $this->session->sess_destroy();
 		        
-		        $this->session->set_flashdata('success',"Email details Updated.");
-		        redirect(site_url('login'));
+		        if (isset($result[0]['AccessToken'])) {
+		            $access_token   = $result[0]['AccessToken'];
+		            $email_data     = array(
+		                'name'             	=> $result[0]['UserName'],
+		                'access_token_url'  => site_url('user/change_email_active/'.$access_token),
+		            );
+
+		            //start code for send email for active user
+		            $from_email = SMTP_FROM_EMAIL;
+		            $to_email   = SMTP_FROM_EMAIL;
+		            $this->_load_email_config();
+		            $email_message = $this->load->view('email/change_email', $email_data, TRUE);
+		            $this->email->from($from_email, 'Identification');
+		            $this->email->to($to_email);
+		            $this->email->subject('Active Account');
+		            $this->email->message($email_message);
+		            if ($this->email->send()) {
+		                echo 'Email successfully sent';
+		            } else {
+		                echo $this->email->print_debugger();
+		            }
+		            //end code for send email for active user
+		            $this->session->unset_userdata('user');
+		            $this->session->sess_destroy();
+		            
+		            $this->session->set_flashdata('success',"Email details Updated.");
+		            redirect(site_url('login'));
+		        }else{
+		            $this->session->set_flashdata('error','Something went wrong!');
+		            redirect(site_url('edit_profile'));
+		        }
 		}else{
 		    $this->session->set_flashdata('error',validation_errors());
-		    redirect(site_url('register'));
+		    redirect(site_url('edit_profile'));
 		}
 		
 	}

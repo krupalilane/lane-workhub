@@ -95,3 +95,8 @@ defined('SMTP_PROTOCOL')       OR define('SMTP_PROTOCOL', 'smtp');
 defined('SMTP_HOST')           OR define('SMTP_HOST', 'smtp.office365.com');
 defined('SMTP_PORT')           OR define('SMTP_PORT', 587);
 defined('SMTP_PASSWORD')       OR define('SMTP_PASSWORD', 'CHW!nter2024!');
+defined('USER_ROLE_ID')        OR define('USER_ROLE_ID', 1);
+defined('AWAIT_VALIDATION_ID') OR define('AWAIT_VALIDATION_ID', 1);
+defined('REGISTRATION_TOKEN_TYPE') OR define('REGISTRATION_TOKEN_TYPE', 0);
+defined('CHANGE_EMAIL_TOKEN_TYPE') OR define('CHANGE_EMAIL_TOKEN_TYPE', 1);
+defined('FORGET_PASSWORD_TOKEN_TYPE') OR define('FORGET_PASSWORD_TOKEN_TYPE', 1);

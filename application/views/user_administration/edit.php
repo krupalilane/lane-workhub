@@ -67,7 +67,7 @@
                                               <?php echo $this->session->flashdata('success'); ?>
                                             </div>
                                         <?php } ?>
-                                        <form role="form" method="post" enctype="multipart/form-data" action="<?php echo site_url('edit_profile/update_user_profile');?>"  id="profile_form">
+                                        <form role="form" method="post" enctype="multipart/form-data" action="<?php echo site_url('user_administration/update');?>"  id="profile_form">
                                             <input type="hidden" name="user_id" name="user_id" value="<?php echo $user_details['ID']; ?>">                  
                                             <div class="form-group">
                                                 <label class="control-label">First Name</label>
@@ -83,6 +83,30 @@
                                                         if (!empty($office_details)) {
                                                             foreach ($office_details as $key => $office_data) { ?>
                                                                 <option <?php if ($user_details['OfficeId'] == $office_data['ID'] ) { echo "selected";} ?> value="<?php echo $office_data['ID']; ?>"><?php echo $office_data['OfficeName']; ?></option>   
+                                                        <?php    }
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">User Class</label>
+                                                <select name="userclass" class="form-control input-xlarge">
+                                                    <?php
+                                                        if (!empty($user_class)) {
+                                                            foreach ($user_class as $key => $class_data) { ?>
+                                                                <option <?php if ($user_details['Class'] == $class_data['ID'] ) { echo "selected";} ?> value="<?php echo $class_data['ID']; ?>"><?php echo $class_data['UserClass']; ?></option>   
+                                                        <?php    }
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">User Status</label>
+                                                <select name="userstatus" class="form-control input-xlarge">
+                                                    <?php
+                                                        if (!empty($user_status)) {
+                                                            foreach ($user_status as $key => $status_data) { ?>
+                                                                <option <?php if ($user_details['Status'] == $status_data['ID'] ) { echo "selected";} ?> value="<?php echo $status_data['ID']; ?>"><?php echo $status_data['StatusName']; ?></option>   
                                                         <?php    }
                                                         }
                                                     ?>
@@ -127,6 +151,7 @@
                                             </div>
                                             <div class="margin-top-10">
                                                 <input type="submit" class="btn red" value="Update Profile">
+                                                <a href="<?php echo site_url('user_administration');?>" class="btn dark">Back To User Admin</a>
                                             </div>
                                         </form>
                                     </div>

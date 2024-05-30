@@ -1,4 +1,16 @@
 <div class="portlet light ">
+    <?php if($this->session->flashdata('error')) { ?>
+        <div class="alert alert-warning alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <?php echo $this->session->flashdata('error'); ?>
+        </div>
+    <?php } ?>
+    <?php if($this->session->flashdata('success')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <?php echo $this->session->flashdata('success'); ?>
+        </div>
+    <?php } ?>
     <div class="portlet-title">
         <div class="caption font-dark">
             <i class="fa fa-cubes font-dark"></i>

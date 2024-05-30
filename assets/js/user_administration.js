@@ -109,3 +109,38 @@ jQuery(document).ready(function() {
         });
     }); 
 });
+$('#profile_form').submit(function(e) {
+    $('input[type=text]').each(function() {
+      $(this).val($.trim($(this).val()));
+    });
+});
+$('#profile_form').validate({
+    rules: {
+        firstname: {
+            required: true
+        },
+        lastname: {
+            required: true
+        },
+        localoffice: {
+            required: true
+        },
+        phone: {
+            phoneUS: true
+        }
+    },
+    messages: {
+        firstname: {
+            required: "First name is required!"
+        },
+        lastname: {
+            required: "Last name is required!"
+        },
+        localoffice: {
+            required: "Please select local office!"
+        }
+    },
+    submitHandler: function(form) {
+        form.submit();
+    }
+});

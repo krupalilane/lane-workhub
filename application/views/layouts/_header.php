@@ -7,7 +7,7 @@
                     <div class="container-fluid">
                         <!-- BEGIN LOGO -->
                         <div class="page-logo">
-                            <a href="index.php">
+                            <a href="<?php echo site_url('manage_project'); ?>">
                                 <img src="<?php echo asset_url();?>images/logo-lane-header_75px.png" alt="logo" class="logo-default">
                             </a>
                         </div>

@@ -8,8 +8,25 @@ class Register extends MY_Controller{
         parent::__construct();
         $this->data['js_links']    = array('global/plugins/jquery-validation/js/jquery.validate.min.js','global/plugins/jquery-validation/js/additional-methods.min.js');
         $this->data['javascripts']  = array('registartion.js');
+        $this->load->library('email');
     }
+    private function _load_email_config() {
+       $config['protocol']      = SMTP_PROTOCOL;
+        $config['smtp_host']    = SMTP_HOST;
+        $config['smtp_port']    = SMTP_PORT; // or the appropriate port
+        $config['smtp_user']    = SMTP_FROM_EMAIL;
+        $config['smtp_pass']    = SMTP_PASSWORD;
+        $config['smtp_crypto']  = 'tls'; // or 'ssl' if required
+        $config['mailtype']     = 'html';
+        $config['charset']      = 'utf-8';
+        $config['wordwrap']     = true;
+        $config['smtp_timeout'] = 30;
+        $config['newline']      = "\r\n";
+        $config['crlf']         = "\r\n";
 
+        $this->email->initialize($config);
+
+    }
     public function index(){
         $stmt = sqlsrv_query($this->db->conn_id, 'EXEC stormconfig.USP_GetUserDetailbyId @UserId = 0');
         if (!$stmt) {
@@ -72,7 +89,10 @@ class Register extends MY_Controller{
                 'IsAgreeToRecPromEmailFromLaneStormStorage'                => 0,
                 'IsAgreeToRecNotifEmailFromLaneStormStorage'               => 0,
                 'IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'   => 0,
-                'LoggedInUserID'                                           => '-1'
+                'LoggedInUserID'                                           => '-1',
+                'Class'                                                    => USER_ROLE_ID,
+                'Status'                                                   => AWAIT_VALIDATION_ID,
+                'TokenType'                                                => REGISTRATION_TOKEN_TYPE
             );
             $add_user_db = "EXEC stormconfig.USP_InsertUpdateUserData 
                 @UserID                                                    = ?,  
@@ -95,11 +115,42 @@ class Register extends MY_Controller{
                 @IsAgreeToRecPromEmailFromLaneStormStorage                 = ?,  
                 @IsAgreeToRecNotifEmailFromLaneStormStorage                = ?,  
                 @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,  
-                @LoggedInUserID                                            = ?;";
+                @LoggedInUserID                                            = ?,
+                @Class                                                     = ?,
+                @Status                                                    = ?,
+                @TokenType                                                 = ?;";
                 $user_add = $this->db->query($add_user_db,$param);
                 $result   = $user_add->result_array();
-                $this->session->set_flashdata('success',"Account Created. Details sent via email.");
-                redirect(site_url('login'));
+                if (isset($result[0]['AccessToken'])) {
+                    $access_token   = $result[0]['AccessToken'];
+                    $email_data     = array(
+                        'name'              => $this->input->post('firstname').' '.$this->input->post('lastname'),
+                        'email'             => $this->input->post('email'),
+                        'access_token_url'  => site_url('user/registration_active/'.$access_token),
+                    );
+
+                    //start code for send email for active user
+                    $from_email = SMTP_FROM_EMAIL;
+                    $to_email   = SMTP_FROM_EMAIL;
+                    $this->_load_email_config();
+                    $email_message = $this->load->view('email/registration_email', $email_data, TRUE);
+                    $this->email->from($from_email, 'Identification');
+                    $this->email->to($to_email);
+                    $this->email->subject('Active Account');
+                    $this->email->message($email_message);
+                    if ($this->email->send()) {
+                        echo 'Email successfully sent';
+                    } else {
+                        echo $this->email->print_debugger();
+                    }
+                    //end code for send email for active user
+
+                    $this->session->set_flashdata('success',"Account Created. Details sent via email.");
+                    redirect(site_url('login'));
+                }else{
+                    $this->session->set_flashdata('error','Something went wrong!');
+                    redirect(site_url('register'));
+                }
         }else{
             $this->session->set_flashdata('error',validation_errors());
             redirect(site_url('register'));
