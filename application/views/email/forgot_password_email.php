@@ -6,8 +6,8 @@
 </head>
 <body>
     <p>Dear <?php echo $name; ?>,</p>
-    <p>Please click on below link to confirm the email.</p>
-    <a href="<?php echo $access_token_url;?>" class="btn dark">Active Account</a>
+    <p>Please use below link to change password :</p>
+    <a href="<?php echo $access_token_url;?>" class="btn dark">Change Password</a>
      
     <p>Please keep this email for your records. If you have any questions or need to make any changes, feel free to contact us at <?php echo SMTP_FROM_EMAIL?> .</p>
      

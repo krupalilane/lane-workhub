@@ -3,13 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller {
 
-	protected $asides = array('header' => 'layouts/_header',
-							'footer' => 'layouts/_footer',
-	                        'js' => 'layouts/_js',
-	                    );
-	protected $layout = 'layouts/master_layout';
+	protected $layout = 'layouts/login_layout';
 	public function __construct() {
 	    parent::__construct(); 
+	    $this->data['js_links']    = array('global/plugins/jquery-validation/js/jquery.validate.min.js','global/plugins/jquery-validation/js/additional-methods.min.js');
+	    $this->data['javascripts']  = array('reset_password.js');
 	    $this->load->library('email');
 	}
 	private function _load_email_config() {
@@ -86,5 +84,25 @@ class User extends MY_Controller {
 			$this->session->set_flashdata('error','Something went wrong!');
 			redirect(site_url('login'));
 		}
+	}
+	public function reset_password($access_token)
+	{
+		$param = array(
+		    'TokenType'         => FORGET_PASSWORD_TOKEN_TYPE,
+		    'AccessToken'       => $access_token		    
+		);
+	
+		$access_token_check = "EXEC stormconfig.USP_CheckAccessToken 
+		    @TokenType          = ?,  
+		    @AccessToken        = ?;";
+
+		    $check_access_token = $this->db->query($access_token_check,$param);
+		    $result   = $check_access_token->row_array();
+		    
+		    if ($result['TokenStatus'] == 0) {
+			    $this->session->set_flashdata('error',"Your access token is expired.");
+			    redirect(site_url('login'));
+		    }
+		$this->data['access_token'] = $access_token;
 	}
 }

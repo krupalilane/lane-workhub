@@ -7,7 +7,7 @@
 <body>
     <p>Dear <?php echo $name; ?>,</p>
     <p>Thank you for registering Storm Storage! We are excited to have you on our portal.</p>
-    <p>Please click on below button to confirm the registration.</p>
+    <p>Please click on below link to confirm the registration.</p>
     <a href="<?php echo $access_token_url;?>" class="btn dark">Active Account</a>
      
     <p>Here are the details of your registration:</p>

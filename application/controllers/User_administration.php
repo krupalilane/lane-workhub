@@ -33,7 +33,7 @@ class User_administration extends MY_Controller {
 			) 
 		);
 		$this->data['breadcrumb'] = $breadcrumb_data;
-		$users_submit_query  	= $this->db->query('EXEC stormconfig.USP_GetUserDetail');
+		$users_submit_query  	= $this->db->query('EXEC stormconfig.USP_GetUserDetails');
 		$this->data['users'] 	= $users_submit_query->result_array();
 	}
 	public function delete_user()

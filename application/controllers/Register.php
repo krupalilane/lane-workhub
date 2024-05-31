@@ -131,7 +131,7 @@ class Register extends MY_Controller{
 
                     //start code for send email for active user
                     $from_email = SMTP_FROM_EMAIL;
-                    $to_email   = SMTP_FROM_EMAIL;
+                    $to_email   = $this->input->post('email');
                     $this->_load_email_config();
                     $email_message = $this->load->view('email/registration_email', $email_data, TRUE);
                     $this->email->from($from_email, 'Identification');
