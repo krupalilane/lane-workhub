@@ -256,6 +256,8 @@ class Edit_profile extends MY_Controller {
 		        'IsAgreeToRecPromEmailFromLaneStormStorage'                => 0,
 		        'IsAgreeToRecNotifEmailFromLaneStormStorage'               => 0,
 		        'IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'   => 0,
+		        'Class'                                                    => '',  
+		        'Status'                                                   => '',  
 		        'LoggedInUserID'                                           => $this->session->userdata('user')['id']
 		    );
 		    $add_user_db = "EXEC stormconfig.USP_InsertUpdateUserData 
@@ -279,6 +281,8 @@ class Edit_profile extends MY_Controller {
 		        @IsAgreeToRecPromEmailFromLaneStormStorage                 = ?,  
 		        @IsAgreeToRecNotifEmailFromLaneStormStorage                = ?,  
 		        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,  
+		        @Class                                                     = ?,  
+		        @Status                                                    = ?,  
 		        @LoggedInUserID                                            = ?;";
 		        $user_add = $this->db->query($add_user_db,$param);
 		        $result   = $user_add->result_array();
@@ -416,6 +420,8 @@ class Edit_profile extends MY_Controller {
 		        'IsAgreeToRecPromEmailFromLaneStormStorage'                => 0,
 		        'IsAgreeToRecNotifEmailFromLaneStormStorage'               => 0,
 		        'IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'   => 0,
+		        'Class'                                                    => '',  
+		        'Status'                                                   => '',  
 		        'LoggedInUserID'                                           => $this->session->userdata('user')['id']
 		    );
 		    $add_user_db = "EXEC stormconfig.USP_InsertUpdateUserData 
@@ -438,7 +444,9 @@ class Edit_profile extends MY_Controller {
 		        @AgreeTermsOfUse                                           = ?,  
 		        @IsAgreeToRecPromEmailFromLaneStormStorage                 = ?,  
 		        @IsAgreeToRecNotifEmailFromLaneStormStorage                = ?,  
-		        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,  
+		        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?, 
+		        @Class                                                     = ?,  
+		        @Status                                                    = ?,   
 		        @LoggedInUserID                                            = ?;";
 		        $user_add = $this->db->query($add_user_db,$param);
 		        $result   = $user_add->result_array();
@@ -476,6 +484,8 @@ class Edit_profile extends MY_Controller {
 	        'IsAgreeToRecPromEmailFromLaneStormStorage'                => $this->input->post('subscribe_promo'),
 	        'IsAgreeToRecNotifEmailFromLaneStormStorage'               => $this->input->post('subscribe_notify'),
 	        'IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage'   => $this->input->post('subscribe_news'),
+	        'Class'                                                    => '',  
+		    'Status'                                                   => '',  
 	        'LoggedInUserID'                                           => $this->session->userdata('user')['id']
 	    );
 	    $add_user_db = "EXEC stormconfig.USP_InsertUpdateUserData 
@@ -498,7 +508,9 @@ class Edit_profile extends MY_Controller {
 	        @AgreeTermsOfUse                                           = ?,  
 	        @IsAgreeToRecPromEmailFromLaneStormStorage                 = ?,  
 	        @IsAgreeToRecNotifEmailFromLaneStormStorage                = ?,  
-	        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,  
+	        @IsAgreeToRecMonthlyNewsLetterEmailFromLaneStormStorage    = ?,
+	        @Class                                                     = ?,  
+	        @Status                                                    = ?,    
 	        @LoggedInUserID                                            = ?;";
 	        $user_add = $this->db->query($add_user_db,$param);
 	        $result   = $user_add->result_array();

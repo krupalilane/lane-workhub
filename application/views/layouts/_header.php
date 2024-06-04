@@ -68,7 +68,7 @@
                                         <span class="arrow"></span>
                                     </a>
                                 </li>
-                                 
+                                <?php if ($this->session->userdata('user')['UserClass'] == ADMIN_ROLE) { ?>
                                 <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown  ">
                                     <a href="javascript:;"> Administration
                                         <span class="arrow"></span>
@@ -86,6 +86,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <?php } ?>
                                 <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown  <?php echo ($active_menu == 'support') ? 'active' : ''; ?>">
                                     <a href="<?php echo site_url('support'); ?>"> Help/Support
                                         <span class="arrow"></span>

@@ -28,6 +28,9 @@ var Contact = function () {
 jQuery(document).ready(function() {    
    Contact.init(); 
 });
+$.validator.addMethod("alphaNumericNoFirstNumber", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z][a-zA-Z0-9]*$/.test(value);
+    }, "Only alphanumeric words are allowed, and the first character cannot be a number.");
 $('#contact_form').submit(function(e) {
     $('input[type=text]').each(function() {
       $(this).val($.trim($(this).val()));
@@ -36,7 +39,8 @@ $('#contact_form').submit(function(e) {
 $('#contact_form').validate({
     rules: {
         name: {
-            required: true
+            required: true,
+            alphaNumericNoFirstNumber: true
         },
         email: {
             required: true,

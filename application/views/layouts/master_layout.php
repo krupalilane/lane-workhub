@@ -51,6 +51,13 @@
                            <!-- BEGIN PAGE CONTENT BODY -->
                            <div class="page-content">
                                <div class="container-fluid">
+                                    <?php 
+                                        if ($active_menu == 'manage_project') {
+                                            if ($this->session->userdata('user')['IsLoggedInFirstTime'] == 1) { ?>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <p>For security purposes, please <a href="<?php echo site_url('edit_profile'); ?>" target="_blank">change your default password </a> that meets our security criteria. </p>       
+                                            </div>
+                                    <?php } } ?>
                                    <!-- BEGIN PAGE BREADCRUMBS -->
                                     <ul class="page-breadcrumb breadcrumb">
                                         <?php if(isset($breadcrumb) && !empty($breadcrumb)){ 

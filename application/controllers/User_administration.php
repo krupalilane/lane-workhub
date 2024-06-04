@@ -14,6 +14,9 @@ class User_administration extends MY_Controller {
 	    if(empty($this->s_user)){
 	        redirect(site_url('login'));
 	    }
+	    if ($this->session->userdata('user')['UserClass'] != ADMIN_ROLE) {
+	    	redirect(site_url('access_denied'));
+	    }
 	    $this->data['active_menu'] = 'user_administration';
 		$this->load->helper('project_helper');
 		$this->data['project_lists'] = get_project_data();

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Work_in_progress extends MY_Controller {
+class Access_denied extends MY_Controller {
 
 	protected $asides = array('header' => 'layouts/_header',
 							'footer' => 'layouts/_footer',

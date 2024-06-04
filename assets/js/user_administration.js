@@ -109,6 +109,9 @@ jQuery(document).ready(function() {
         });
     }); 
 });
+$.validator.addMethod("alphaNumericNoFirstNumber", function(value, element) {
+    return this.optional(element) || /^[a-zA-Z][a-zA-Z0-9]*$/.test(value);
+}, "Only alphanumeric words are allowed, and the first character cannot be a number.");
 $('#profile_form').submit(function(e) {
     $('input[type=text]').each(function() {
       $(this).val($.trim($(this).val()));
@@ -117,10 +120,12 @@ $('#profile_form').submit(function(e) {
 $('#profile_form').validate({
     rules: {
         firstname: {
-            required: true
+            required: true,
+            alphaNumericNoFirstNumber: true
         },
         lastname: {
-            required: true
+            required: true,
+            alphaNumericNoFirstNumber: true
         },
         localoffice: {
             required: true

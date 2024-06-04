@@ -36,6 +36,9 @@ $(document).ready(function() {
         });
         return response;
     }, "Please enter correctCurrent password.");
+    $.validator.addMethod("alphaNumericNoFirstNumber", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z][a-zA-Z0-9]*$/.test(value);
+    }, "Only alphanumeric words are allowed, and the first character cannot be a number.");
     $('#profile_form').submit(function(e) {
         $('input[type=text]').each(function() {
           $(this).val($.trim($(this).val()));
@@ -44,10 +47,12 @@ $(document).ready(function() {
     $('#profile_form').validate({
         rules: {
             firstname: {
-                required: true
+                required: true,
+                alphaNumericNoFirstNumber: true
             },
             lastname: {
-                required: true
+                required: true,
+                alphaNumericNoFirstNumber: true
             },
             localoffice: {
                 required: true
