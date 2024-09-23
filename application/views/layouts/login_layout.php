@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>StormStorage Online Configuration Tool | Lane Enterprises, Inc.</title>
+        <title>Work Hub Online Configuration Tool | Lane Enterprises, Inc.</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="StormStorage Online Configuration Tool &copy; Lane Enterprises, Inc." name="description" />
+        <meta content="Work Hub Online Configuration Tool &copy; Lane Enterprises, Inc." name="description" />
         <meta content="" name="author" />
         <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
         <link href="<?php echo asset_url();?>global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="<?php echo site_url('login');?>">
-            <img src="<?php echo asset_url();?>images/logo-lane-header_75px.png" alt="" /></a>
+            <img class="site-logo" src="<?php echo asset_url();?>images/final_work_hub.png" alt="" /></a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
@@ -34,7 +34,7 @@
             <?php echo $yield; ?>
         </div>
         <div class="copyright"> <?php echo date("Y"); ?>  &copy;  
-            <a target="_blank" href="http://lane-enterprises.com">Lane Enterprises, Inc.</a>&nbsp;&middot;&nbsp;All Rights Reserved 
+            Lane Work Hub.&nbsp;&middot;&nbsp;All Rights Reserved 
         </div>
         <script src="<?php echo asset_url();?>global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

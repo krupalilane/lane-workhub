@@ -20,9 +20,11 @@
 <script src="<?php echo asset_url();?>layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url();?>layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url();?>layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
-<script src="<?php echo asset_url();?>global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>    
+<script src="<?php echo asset_url();?>global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>   
+<script src="<?php echo asset_url();?>pages/js/sweetalert2.min.js" type="text/javascript"></script>  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143718260-2"></script>
 <script src="<?php echo asset_url();?>js/toastr.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.20.0/full-all/ckeditor.js"></script>
 <script type="text/javascript">
     toastr.options = {
       "closeButton": false,
@@ -41,13 +43,7 @@
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     }
-</script>   
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config',UA-143718260-2);
-</script>   
+</script>    
 <!-- END THEME LAYOUT SCRIPTS -->        <!-- Include Page-Specific Scripting -->
 <script src="https://lane.kbmax.com/js-bundles/embed"></script>
 <script src="<?php echo asset_url();?>global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
@@ -74,7 +70,7 @@ if (isset($javascripts) && is_array($javascripts)) {
         $('#logout_confirm').click(function(){
             bootbox.confirm({
                 title: "<i class='fa fa-question-circle'></i>&nbsp;Log Out?",
-                message: "Are you sure that you want to log out of the Storm-Storage Portal?",
+                message: "Are you sure that you want to log out of the <b>Lane WorkHub</b> Portal?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Cancel',

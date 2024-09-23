@@ -6,18 +6,16 @@ $(document).ready(function() {
     });
     $('#login-form').validate({
         rules: {
-            email: {
+            username: {
                 required: true,
-                email: true
             },
             password: {
                 required: true
             }
         },
         messages: {
-            email: {
-                required: "Please provide Email!",
-                email: "Enter valid email!"
+            username: {
+                required: "Please provide Username!",
             },
             password: {
                 required: "Password is required!"

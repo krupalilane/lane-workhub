@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $baseUrl = '';
 if(function_exists('apache_request_headers')){
 $headers = apache_request_headers();
-$baseUrl = 'http://'.$headers['Host'].'/storm-storage';
+$baseUrl = 'http://'.$headers['Host'].'/lane-work-hub-dev/';
 }
 $config['base_url'] = $baseUrl;
 

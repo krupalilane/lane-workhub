@@ -83,21 +83,14 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
-defined('STORMKEEPER')         OR define('STORMKEEPER', 10);
-defined('CMP_SYSTEM')          OR define('CMP_SYSTEM', 35);
-defined('HDPE_SYSTEM')         OR define('HDPE_SYSTEM', 42);
-defined('KBMAX_USER_EMAIL')            OR define('KBMAX_USER_EMAIL', 'webadmin@lane-enterprises.com');
-defined('KBMAX_USER_PASSWORD')         OR define('KBMAX_USER_PASSWORD', 'P4ssw0rd');
-defined('QUOTES_IN_PROGRESS')          OR define('QUOTES_IN_PROGRESS', 'Processing');
-defined('QUOTES_BUILD_COMPLETE')       OR define('QUOTES_BUILD_COMPLETE', 'Build Complete');
-defined('SMTP_FROM_EMAIL')     OR define('SMTP_FROM_EMAIL', 'storm-storage@lane-enterprises.com');
+defined('SUPER_ADMIN_ROLE_ID') OR define('SUPER_ADMIN_ROLE_ID', 1);
+defined('USER_ROLE_ID')        OR define('USER_ROLE_ID', 3);
+defined('SMTP_FROM_EMAIL')     OR define('SMTP_FROM_EMAIL', 'infotech@lane-enterprises.com');
+defined('RANE_TO_EMAIL')       OR define('RANE_TO_EMAIL', 'infotech@lane-enterprises.com');
 defined('SMTP_PROTOCOL')       OR define('SMTP_PROTOCOL', 'smtp');
 defined('SMTP_HOST')           OR define('SMTP_HOST', 'smtp.office365.com');
 defined('SMTP_PORT')           OR define('SMTP_PORT', 587);
-defined('SMTP_PASSWORD')       OR define('SMTP_PASSWORD', 'CHW!nter2024!');
-defined('USER_ROLE_ID')        OR define('USER_ROLE_ID', 1);
-defined('AWAIT_VALIDATION_ID') OR define('AWAIT_VALIDATION_ID', 1);
-defined('REGISTRATION_TOKEN_TYPE') OR define('REGISTRATION_TOKEN_TYPE', 0);
-defined('CHANGE_EMAIL_TOKEN_TYPE') OR define('CHANGE_EMAIL_TOKEN_TYPE', 1);
-defined('FORGET_PASSWORD_TOKEN_TYPE') OR define('FORGET_PASSWORD_TOKEN_TYPE', 2);
-defined('ADMIN_ROLE') OR define('ADMIN_ROLE', 3);
+defined('SMTP_PASSWORD')       OR define('SMTP_PASSWORD', 'Pipe&Tech123$');
+defined('ALL_PERMISSION')       OR define('ALL_PERMISSION', '1');
+defined('VIEW_PERMISSION')       OR define('VIEW_PERMISSION', '2');
+defined('ADD_EDIT_PERMISSION')       OR define('ADD_EDIT_PERMISSION', '3');

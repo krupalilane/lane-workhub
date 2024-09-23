@@ -1,3 +1,8 @@
+<div id="overlay">
+  <div class="cv-spinner">
+    <span class="spinner"></span>
+  </div>
+</div>
 <div class="page-wrapper-row">
     <div class="page-wrapper-top">
         <!-- BEGIN HEADER -->
@@ -5,99 +10,99 @@
                 <!-- BEGIN HEADER TOP -->
                 <div class="page-header-top">
                     <div class="container-fluid">
-                        <!-- BEGIN LOGO -->
-                        <div class="page-logo">
-                            <a href="<?php echo site_url('manage_project'); ?>">
-                                <img src="<?php echo asset_url();?>images/logo-lane-header_75px.png" alt="logo" class="logo-default">
-                            </a>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="page-logo">
+                                    <a href="<?php echo site_url('dashboard'); ?>">
+                                        <img src="<?php echo asset_url();?>images/logo-work-hub.png" alt="logo" class="logo-default">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 work-center-logo">
+                                <div class="page-logo">
+                                    <img src="<?php echo asset_url();?>images/lane-corporate-logo_55px.png" alt="logo" class="lane-logo">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="javascript:;" class="menu-toggler"></a>
+                                <div class="top-menu">
+                                    <ul class="nav navbar-nav pull-right">
+                                        <span class="username username-hide-mobile">Logged In:&nbsp;&nbsp;<?php echo $this->session->userdata('user')['firstname'].' '.$this->session->userdata('user')['lastname'];?></span>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <!-- END LOGO -->
-                        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                        <a href="javascript:;" class="menu-toggler"></a>
-                        <!-- END RESPONSIVE MENU TOGGLER -->
-                        <!-- BEGIN TOP NAVIGATION MENU -->
-                        <div class="top-menu">
-                            <ul class="nav navbar-nav pull-right">
-                                <span class="username username-hide-mobile">Logged In:&nbsp;&nbsp;<a href="<?php echo site_url('edit_profile'); ?>"><?php echo $this->session->userdata('user')['firstname']; ?> <?php echo $this->session->userdata('user')['lastname']; ?></a></span>
-                            </ul>
-                        </div>
-                        <!-- END TOP NAVIGATION MENU -->
                     </div>
                 </div>
                 <!-- END HEADER TOP -->
                 <!-- BEGIN HEADER MENU -->
                 <div class="page-header-menu">
                     <div class="container-fluid">
-                        <!-- BEGIN MEGA MENU -->
-                        <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
-                        <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
-                        <div class="hor-menu  ">
-                            <ul class="nav navbar-nav">
-                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'manage_project') ? 'active' : ''; ?>">
-                                    <a href="<?php echo site_url('manage_project'); ?>"> Manage Projects
-                                        <span class="arrow"></span>
-                                    </a>
-                                </li>
-                                <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'project') ? 'active' : ''; ?>">
-                                    <a href="<?php echo site_url('project/create_project/').STORMKEEPER; ?>"> Create Project
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="dropdown-menu pull-left">
-                                        <?php 
-                                            if (isset($project_lists)) {
-                                                foreach ($project_lists as $key => $project) { 
-                                                    if ($project->id != 44) { ?>
-                                                        <li aria-haspopup="true">
-                                                            <a href="<?php echo site_url('project/create_project/').$project->id; ?>" class="nav-link">
-                                                                <?php echo $project->name; ?>
-                                                            </a>
-                                                        </li>
-                                                <?php }
-                                                }
-                                            }
-                                        ?>                                           
-                                    </ul>
-                                </li>
-                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'edit_profile') ? 'active' : ''; ?>">
-                                    <a href="<?php echo site_url('edit_profile'); ?>"> Edit Profile
-                                        <span class="arrow"></span>
-                                    </a>
-                                </li>
-                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'contact') ? 'active' : ''; ?>">
-                                    <a href="<?php echo site_url('contact'); ?>"> Contact Us
-                                        <span class="arrow"></span>
-                                    </a>
-                                </li>
-                                <?php if ($this->session->userdata('user')['UserClass'] == ADMIN_ROLE) { ?>
-                                <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown  ">
-                                    <a href="javascript:;"> Administration
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="dropdown-menu pull-left">
-                                        <li aria-haspopup="true">
-                                            <a href="<?php echo site_url('user_administration'); ?>" class="nav-link">
-                                                User Administration
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="hor-menu  ">
+                                    <ul class="nav navbar-nav">
+                                        <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'dashboard') ? 'active' : ''; ?>">
+                                            <a href="<?php echo site_url('dashboard'); ?>"> Dashboard
+                                                <span class="arrow"></span>
                                             </a>
                                         </li>
-                                        <li aria-haspopup="true" class=" ">
-                                            <a href="<?php echo site_url('quote_administration'); ?>" class="nav-link  ">
-                                                Quote Administration
+                                        <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'projects') ? 'active' : ''; ?>">
+                                            <a href="<?php echo site_url('projects'); ?>"> Projects
+                                                <span class="arrow"></span>
                                             </a>
                                         </li>
+                                        <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'web-site') ? 'active' : ''; ?>">
+                                            <a href="<?php echo site_url('websites'); ?>"> Web sites
+                                                <span class="arrow"></span>
+                                            </a>
+                                        </li>
+                                        <?php if ($this->session->userdata('user')['Role'] == '1') { ?>
+                                            <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'settings') ? 'active' : ''; ?>">
+                                                <a href="#"> Admin
+                                                    <span class="arrow"></span>
+                                                </a>
+                                                <ul class="dropdown-menu pull-left">
+                                                    <li aria-haspopup="true">
+                                                        <a href="<?php echo site_url('announcements'); ?>" class="nav-link">
+                                                            Announcements
+                                                        </a>
+                                                    </li> 
+                                                    <li aria-haspopup="true">
+                                                        <a href="<?php echo site_url('holiday'); ?>" class="nav-link">
+                                                            Holiday
+                                                        </a>
+                                                    </li> 
+                                                    <li aria-haspopup="true">
+                                                        <a href="<?php echo site_url('users'); ?>" class="nav-link">
+                                                            Users
+                                                        </a>
+                                                    </li>                                          
+
+                                                </ul>
+                                            </li>
+                                        <?php }else{ ?>
+                                            <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown <?php echo ($active_menu == 'user-edit-profile') ? 'active' : ''; ?>">
+                                                <a href="<?php echo site_url('user_edit_profile'); ?>"> Edit Profile
+                                                    <span class="arrow"></span>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
                                     </ul>
-                                </li>
-                                <?php } ?>
-                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown  <?php echo ($active_menu == 'support') ? 'active' : ''; ?>">
-                                    <a href="<?php echo site_url('support'); ?>"> Help/Support
-                                        <span class="arrow"></span>
-                                    </a>
-                                </li>                                                                          
-                                <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown ">
-                                    <a id="logout_confirm"> Log Out
-                                        <span class="arrow"></span>
-                                    </a>
-                                </li> 
-                            </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="hor-menu right-menu">
+                                    <ul class="nav navbar-nav">
+                                        <li aria-haspopup="false" class="menu-dropdown classic-menu-dropdown">
+                                            <a id="logout_confirm"> Log Out
+                                                <span class="arrow"></span>
+                                            </a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </div>
+                            
                         </div>
                         <!-- END MEGA MENU -->
                     </div>

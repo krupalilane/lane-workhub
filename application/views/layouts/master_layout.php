@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>StormStorage Online Configuration Tool | Lane Enterprises, Inc.</title>
+        <title>Work Hub Online Configuration Tool | Lane Enterprises, Inc.</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="author" />    
@@ -25,6 +25,7 @@
             <link href="<?php echo asset_url();?>layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
             <link href="<?php echo asset_url();?>layouts/layout3/css/custom.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" href="<?php echo asset_url();?>css/toastr.min.css">
+            <link rel="stylesheet" href="<?php echo asset_url();?>pages/css/sweetalert2.min.css">
         <?php
         if (isset($style_links) && is_array($style_links)) {
             foreach ($style_links as $style_link) {
@@ -52,10 +53,10 @@
                            <div class="page-content">
                                <div class="container-fluid">
                                     <?php 
-                                        if ($active_menu == 'manage_project') {
+                                        if ($active_menu == 'dashboard') {
                                             if ($this->session->userdata('user')['IsLoggedInFirstTime'] == 1) { ?>
                                             <div class="alert alert-danger alert-dismissible">
-                                                <p>For security purposes, please <a href="<?php echo site_url('edit_profile'); ?>" target="_blank">change your default password </a> that meets our security criteria. </p>       
+                                                <p>For security purposes, please <a href="<?php echo site_url('edit_profile'); ?>" target="_blank" class="blue_text"><u>change your default password </u></a> that meets our security criteria. </p>       
                                             </div>
                                     <?php } } ?>
                                    <!-- BEGIN PAGE BREADCRUMBS -->

@@ -14,19 +14,13 @@
 <form id="login-form" action="<?php echo site_url('login/check_login');?>" method="post">
     <h3 class="form-title"><i class="fa fa-lock"></i>&nbsp;Sign In</h3>              
     <div class="form-group">
-        <label class="control-label" for="email">Email</label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" id="email" /> </div>
+        <label class="control-label" for="username">Username<span class="text-danger"> *</span></label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" id="username" /> </div>
     <div class="form-group">
-        <label class="control-label" for="password">Password</label>
+        <label class="control-label" for="password">Password<span class="text-danger"> *</span></label>
         <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" id="password" /> </div>
     <div class="form-actions">
-        <button type="submit" class="btn red uppercase">Login</button>
-        <a href="<?php echo site_url('forgot_password');?>" id="forget-password" class="forget-password">Forgot Password?</a>
-    </div>
-     <div class="create-account">
-        <p>
-            <a href="<?php echo site_url('register');?>" id="register-btn" class="uppercase">Create an account</a>
-        </p>
+        <button type="submit" class="btn red-btn capitalize">Login</button>
     </div>
 </form>
 <!-- END LOGIN FORM -->
